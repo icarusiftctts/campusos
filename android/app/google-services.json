@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "614996286102",
+    "project_id": "campus-os-hackathon",
+    "storage_bucket": "campus-os-hackathon.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:614996286102:android:388378c54b6672730980b7",
+        "android_client_info": {
+          "package_name": "com.example.campusos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "614996286102-38pbm9jkdj983k7eeo26nsrhifkcqm7l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.campusos",
+            "certificate_hash": "3951abf56c47303c9d31b13a533b82cf39ef1a65"
+          }
+        },
+        {
+          "client_id": "614996286102-m5ku8po4chgn65k50do7ui2mj4tgcf0v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeV4dTt8kPxExBlexvWfffNEd42YXeULg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "614996286102-m5ku8po4chgn65k50do7ui2mj4tgcf0v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
