@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../data/models/attendance_schema.dart';
 import 'attendance_ring.dart';
-import 'insight_card.dart';
+import 'insights_card.dart';
 import 'subject_attendance_card.dart';
 
 class AttendanceDashboardContent extends StatelessWidget {
@@ -37,7 +37,7 @@ class AttendanceDashboardContent extends StatelessWidget {
               children: [
                 Text(
                   data.student_profile.name ?? 'Student',
-                  style: GoogleFonts.plus_jakarta_sans(
+                  style: GoogleFonts.plusJakartaSans(
                     fontSize: 32,
                     fontWeight: FontWeight.w800,
                     color: Colors.white,

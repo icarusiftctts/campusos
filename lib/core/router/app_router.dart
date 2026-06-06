@@ -1,4 +1,7 @@
+import 'package:campus_os/features/lecture/presentation/screens/recorder_screen.dart';
+import 'package:campus_os/features/ocr/presentation/screens/ocr_screen.dart';
 import 'package:campus_os/features/onboarding/presentation/screens/onboarding_screen.dart';
+import 'package:campus_os/shared/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -15,7 +18,8 @@ final routerProvider = Provider<GoRouter>((ref) {
     initialLocation: '/splash',
     // REFRESH LISTEN_ABLE: Forces router to re-run redirect on auth change
     refreshListenable: GoRouterRefreshStream(
-        ref.watch(authRepositoryProvider).authStateChanges),
+      ref.watch(authRepositoryProvider).authStateChanges,
+    ),
 
     redirect: (context, state) {
       // If we are currently loading the auth state, stay on splash/current screen
@@ -26,15 +30,22 @@ final routerProvider = Provider<GoRouter>((ref) {
       final isOnboarding = state.matchedLocation == '/onboarding';
       final isSplash = state.matchedLocation == '/splash';
 
+      // Special case for splash: if we just loaded the app, we stay on splash
+      // until it completes its own logic, then it triggers onComplete.
+      // But GoRouter redirect might kick in.
+      // To keep it simple, we allow splash to be a regular route.
+
       // 1. Not Logged In
       if (user == null) {
-        if (isLoggingIn || isOnboarding) return null;
+        if (isLoggingIn || isOnboarding || isSplash) return null;
         return '/onboarding';
       }
 
       // 2. Logged In
       if (isLoggingIn || isOnboarding || isSplash) {
-        return '/home';
+        // If we are on splash and logged in, we might want to stay on splash
+        // until the model is ready.
+        return null;
       }
 
       // 3. No redirect needed
@@ -42,13 +53,26 @@ final routerProvider = Provider<GoRouter>((ref) {
     },
     routes: [
       GoRoute(
-          path: '/splash',
-          builder: (c, s) => const Scaffold(
-              backgroundColor: Color(0xFF0B1020),
-              body: Center(child: CircularProgressIndicator()))),
+        path: '/splash',
+        builder: (c, s) => SplashScreen(
+          onComplete: () {
+            // After splash completes, we force a refresh or redirect
+            // For now, simple navigation if possible, but redirect is better
+            // Actually, splash will just call this and we can go to /home if logged in
+            final user = ref.read(authStateProvider).value;
+            if (user != null) {
+              c.go('/home');
+            } else {
+              c.go('/onboarding');
+            }
+          },
+        ),
+      ),
       GoRoute(path: '/onboarding', builder: (c, s) => const OnboardingScreen()),
       GoRoute(path: '/login', builder: (c, s) => const LoginScreen()),
       GoRoute(path: '/home', builder: (c, s) => const HomeScreen()),
+      GoRoute(path: '/recorder', builder: (c, s) => const RecorderScreen()),
+      GoRoute(path: '/ocr', builder: (c, s) => const OcrScreen()),
       // Additional shell branches here...
     ],
   );

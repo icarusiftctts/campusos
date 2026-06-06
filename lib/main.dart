@@ -8,19 +8,27 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 import 'core/router/app_router.dart';
 import 'core/theme/app_theme.dart';
+import 'features/flashcards/data/models/flashcard_model.dart';
+import 'features/lecture/data/models/lecture_model.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await Hive.initFlutter();
 
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarColor: Colors.transparent,
-    systemNavigationBarColor: Color(0xFF0B1020),
-  ));
+  // Register Hive Adapters
+  if (!Hive.isAdapterRegistered(0)) Hive.registerAdapter(LectureModelAdapter());
+  if (!Hive.isAdapterRegistered(1)) Hive.registerAdapter(FlashcardAdapter());
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
+  // Open Boxes
+  await Hive.openBox<LectureModel>('lectures');
+  await Hive.openBox<Flashcard>('flashcards');
+
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      systemNavigationBarColor: Color(0xFF0B1020),
+    ),
   );
 
   runApp(const ProviderScope(child: CampusOS()));

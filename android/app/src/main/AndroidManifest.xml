@@ -1,4 +1,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Square A: microphone for lecture recording -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+
+    <!-- Square B: camera for assignment scanning -->
+    <uses-permission android:name="android.permission.CAMERA"/>
+
+    <!-- Gemini API fallback needs internet -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <!-- Reading the model file from external storage -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
     <application
         android:label="campusos"
         android:name="${applicationName}"

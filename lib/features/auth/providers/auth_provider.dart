@@ -1,7 +1,6 @@
 import 'package:campus_os/features/auth/data/repositories/auth_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_riverpod/legacy.dart';
 
 final authRepositoryProvider =
     Provider<AuthRepository>((ref) => AuthRepository());
