@@ -41,42 +41,52 @@ class HomeScreen extends ConsumerWidget {
                 SliverToBoxAdapter(
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(24, 20, 24, 24),
-                    child: _buildHeader(),
+                    child: _buildHeader()
+                        .animate()
+                        .fadeIn(duration: 400.ms)
+                        .slideY(begin: -0.1),
                   ),
-                ).animate().fadeIn(duration: 400.ms).slideY(begin: -0.1),
+                ),
 
                 // SECTION 2: Hero Card
-                const SliverToBoxAdapter(
-                  child: AcademicHero(),
-                ).animate().fadeIn(delay: 200.ms).slideY(begin: 0.1),
+                SliverToBoxAdapter(
+                  child: const AcademicHero()
+                      .animate()
+                      .fadeIn(delay: 200.ms)
+                      .slideY(begin: 0.1),
+                ),
 
                 // SECTION 3: Quick Actions
                 const SliverPadding(
                   padding: EdgeInsets.all(24),
                   sliver: QuickActionsGrid(),
-                ).animate().fadeIn(delay: 400.ms),
+                ),
 
                 // SECTION 4: AI Insights
-                const SliverToBoxAdapter(
-                  child: AIInsightsRow(),
-                ).animate().fadeIn(delay: 600.ms),
+                SliverToBoxAdapter(
+                  child: const AIInsightsRow().animate().fadeIn(delay: 600.ms),
+                ),
 
                 // SECTION 5: Schedule
-                const SliverToBoxAdapter(
-                  child: ScheduleTimeline(),
-                ).animate().fadeIn(delay: 800.ms),
+                SliverToBoxAdapter(
+                  child:
+                      const ScheduleTimeline().animate().fadeIn(delay: 800.ms),
+                ),
 
                 // SECTION 6: Essentials
-                const SliverToBoxAdapter(
-                  child: EssentialsRow(),
-                ).animate().fadeIn(delay: 900.ms),
+                SliverToBoxAdapter(
+                  child: const EssentialsRow().animate().fadeIn(delay: 900.ms),
+                ),
 
                 // SECTION 7: Recent Activity
                 SliverToBoxAdapter(
-                  child: _buildRecentActivity(),
+                  child:
+                      _buildRecentActivity().animate().fadeIn(delay: 1000.ms),
                 ),
 
-                const SliverToBoxAdapter(child: SizedBox(height: 120)),
+                const SliverToBoxAdapter(
+                  child: SizedBox(height: 120),
+                ),
               ],
             ),
           ),
