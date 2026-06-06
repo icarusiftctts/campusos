@@ -1,5 +1,6 @@
 package com.example.campusos
 
+import android.util.Log
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
@@ -20,6 +21,14 @@ class MainActivity : FlutterActivity() {
                     if (modelPath != null) {
                         executor.execute {
                             try {
+
+                                val file = java.io.File(modelPath)
+
+                                Log.d("GEMMA", "Path: ${file.absolutePath}")
+                                Log.d("GEMMA", "Exists: ${file.exists()}")
+                                Log.d("GEMMA", "Readable: ${file.canRead()}")
+                                Log.d("GEMMA", "Size: ${file.length()}")
+
                                 val options = LlmInference.LlmInferenceOptions.builder()
                                     .setModelPath(modelPath)
                                     .setMaxTokens(2048)

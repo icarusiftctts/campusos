@@ -24,7 +24,6 @@ dependencies:
   # Design & UI
   google_fonts: ^6.2.1
   flutter_animate: ^4.5.0
-  lucide_icons: 0.257.0
 
   # Utilities (Feature Specific)
   hive_flutter: ^1.1.0

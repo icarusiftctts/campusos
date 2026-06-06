@@ -46,7 +46,7 @@ class QuickActionsGrid extends StatelessWidget {
         crossAxisCount: 2,
         mainAxisSpacing: 16,
         crossAxisSpacing: 16,
-        childAspectRatio: 1.1,
+        childAspectRatio: 1.35,
       ),
       delegate: SliverChildBuilderDelegate(
         (context, index) {
