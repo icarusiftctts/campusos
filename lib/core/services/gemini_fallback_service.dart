@@ -6,7 +6,7 @@ import 'package:hive/hive.dart';
 import '../../features/flashcards/data/models/flashcard_model.dart';
 
 class GeminiFallbackService {
-  static const String _apiKey = '';
+  static const String _apiKey = 'AQ.Ab8RN6JfCPTwh3Bh6jseqrnFUz3b6T7lqrrmwyp6RCAf_Rsm8A';
 
   late final GenerativeModel _model;
 
